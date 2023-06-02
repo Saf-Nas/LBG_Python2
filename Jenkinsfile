@@ -9,13 +9,12 @@ pipeline {
             }
         }    
         
-        stage('build and run containers') {
+        stage('build and push image') {
             steps {
                 sh '''
-                docker build -t lbg-app:v1 .
-                docker run -d -p 5000:8080 --name lbg-app lbg-app:v1
-                docker push gcr.io/lbg-mea-11/sprint3-saf:v1
-                '''
+                docker build -t gcr.io/lbg-mea-11/sprint3-saf:v1 .
+                docker push gcr.io/lbg-mea-11/sprint3-saf:v1 
+               '''
             }
         }
     }
